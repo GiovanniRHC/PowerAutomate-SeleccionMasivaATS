@@ -1,0 +1,89 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_uiflow_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "rpa_ConMV4Reclutador490"
+        },
+        "api": {
+          "name": "shared_uiflow"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "Periodicidad": {
+          "recurrence": {
+            "frequency": "Week",
+            "interval": 1,
+            "timeZone": "SA Pacific Standard Time",
+            "schedule": {
+              "weekDays": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ],
+              "hours": [
+                "8",
+                "10",
+                "12",
+                "14",
+                "16",
+                "18",
+                "20",
+                "22"
+              ],
+              "minutes": [
+                0
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "32c46aa4-2d17-452c-96a2-ccd8042b1acd"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "Ejecutar_un_flujo_creado_con_Power_Automate_para_escritorio": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "8abce3b0-f9ba-4e99-8511-7c3216fca06f"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "uiFlowId": "dff52ac4-789b-49a8-8578-78ed692bbec3",
+              "runMode": "attended",
+              "item/InpIdentificadorReclutador": 4
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_uiflow",
+              "operationId": "RunUIFlow_V2",
+              "connectionName": "shared_uiflow_1"
+            }
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
